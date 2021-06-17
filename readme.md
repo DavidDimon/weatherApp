@@ -1,4 +1,4 @@
-# Weather ap
+# Weather app
 
 ## Requirements
 
