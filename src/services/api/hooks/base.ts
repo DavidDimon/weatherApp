@@ -18,7 +18,7 @@ interface IReducerAction {
 
 interface IFetchParams {
   url?: string
-  method?: 'post' | 'get' | 'delete' | 'put'
+  method?: 'post' | 'get' | 'delete' | 'put' | 'patch'
   body?: any
   dispatch: Function
   onCompleted?: Function
@@ -26,7 +26,7 @@ interface IFetchParams {
 }
 
 interface IHandleFetch {
-  method?: 'post' | 'get' | 'delete' | 'put'
+  method?: 'post' | 'get' | 'delete' | 'put' | 'patch'
   body?: any
   onCompleted?: Function
   onError?: Function

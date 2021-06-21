@@ -7,6 +7,7 @@
 - react-native-cli
 - cocoaPods for iOS build
 - android sdk for android build
+- api key of [Weather api](https://openweathermap.org/api)
 
 ## Commands
 
@@ -17,7 +18,7 @@
 
 ## Structure
 
-- Components (atomic design based)
+- Components (atomic design based)[Atomic design docs](https://www.notion.so/Atomic-design-18650c7c024b4c2caec9d20ed71124d8)
 - Constants (separated by entities)
 - Screens (screens of app and routes)
 - Services (alot of functions separated by your use, example -> locale)
