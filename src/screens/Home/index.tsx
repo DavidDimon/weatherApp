@@ -3,13 +3,21 @@ import { ActivityIndicator } from 'react-native'
 import { format } from 'date-fns'
 import { useTheme } from 'styled-components'
 
-import { Container, Box, Text, LottieWrapper, InfoItem } from '@components'
+import {
+  Container,
+  Box,
+  Text,
+  LottieWrapper,
+  InfoItem,
+  Pressable,
+  Icon,
+} from '@components'
 import { IScreenDefault } from '@interfaces/screen'
 import { useWeatherInfo } from '@services/api/hooks'
 import { getDefaultLocale } from '@services/locale'
 
 const Home: React.FC & IScreenDefault = () => {
-  const { data, loading, currentAnimation } = useWeatherInfo()
+  const { data, loading, currentAnimation, reload } = useWeatherInfo()
   const theme: any = useTheme()
 
   const date = React.useMemo(
@@ -33,9 +41,29 @@ const Home: React.FC & IScreenDefault = () => {
     <Container ph={6}>
       <Box flexDir="column" justifyContent="center" alignItems="center" mt={2}>
         <Box mb={2} flexDir="column">
-          <Text fontSize={6} weight="bold" color="brand" translate={false}>
-            {data?.name}
-          </Text>
+          <Box flexDir="row">
+            <Text
+              fontSize={6}
+              weight="bold"
+              color="brand"
+              translate={false}
+              mr={2}
+            >
+              {data?.name}
+            </Text>
+            <Pressable
+              onPress={reload}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Icon
+                name="reload"
+                strokeColor="grey.400"
+                width={17}
+                height={17}
+              />
+            </Pressable>
+          </Box>
           <Text fontSize={5} color="grey.400" translate={false}>
             {date}
           </Text>
