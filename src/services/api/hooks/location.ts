@@ -1,10 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import GetLocation from 'react-native-get-location'
-import axios from 'axios'
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions'
-// @ts-ignore
-import { GOOGLE_API_KEY } from 'react-native-dotenv'
 
 import { useLocationStore } from '@services/store'
 
@@ -12,8 +9,6 @@ const permissionKey = {
   ios: 'LOCATION_WHEN_IN_USE',
   android: 'ACCESS_FINE_LOCATION',
 }
-
-const googleApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=${GOOGLE_API_KEY}`
 
 export const useGetLocation = () => {
   const [loading, setLoading] = React.useState(true)
@@ -63,20 +58,7 @@ export const useGetLocation = () => {
         enableHighAccuracy: false,
       })
 
-      const result = await axios(
-        `${googleApiUrl}&latlng=${location?.latitude},${location?.longitude}`
-      )
-
-      let city = result?.data?.results[0]?.address_components?.find((item) =>
-        item?.types?.includes('locality')
-      )
-      if (!city) {
-        city = result?.data?.results[0]?.address_components?.find((item) =>
-          item?.types?.includes('administrative_area_level_2')
-        )
-      }
-
-      setLocation({ ...location, city: city?.long_name || 'city_not_found' })
+      setLocation(location)
     } catch (error) {
       console.warn('Failed to get location', error)
     }

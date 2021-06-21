@@ -24,3 +24,7 @@
 - Styles (static styles props(example -> colors))
 - Constants (constants of app separated by entity or screen)
 - Interface (general interfaces separated by entity)
+
+## ScreenShots
+
+<img  alt="Home"  src=".github/images/home.png"  width="40%">

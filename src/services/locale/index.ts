@@ -46,3 +46,10 @@ export const getDefaultLocale = () => {
   const translateNormalize = normalizeTranslate[language]
   return translateNormalize?.includes('US') ? enUS : ptBR
 }
+
+export const getDefaultLanguage = () => {
+  const language = getLanguageByDevice()
+  const translateNormalize = normalizeTranslate[language]
+
+  return translateNormalize?.includes('pt') ? 'pt_br' : 'en'
+}

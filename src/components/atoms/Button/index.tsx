@@ -45,7 +45,7 @@ const Button: React.FC<IButtonProps> & IButtonTypes = ({
     {...props}
   >
     {typeof children === 'string' ? (
-      <Text fontSize={4} weight="bold" color={color || 'white'}>
+      <Text fontSize={4} weight="bold" color={color || 'textLight'}>
         {children}
       </Text>
     ) : (

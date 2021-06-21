@@ -23,7 +23,7 @@ const Onboarding: React.FC & IScreenDefault = () => {
         mt={10}
         autoPlay
       />
-      <Text weight="bold" fontSize={5}>
+      <Text color="textDark" weight="bold" fontSize={5}>
         {'enable_location'}
       </Text>
 

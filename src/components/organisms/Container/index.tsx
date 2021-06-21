@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Box } from '@components/atoms'
 import {
   IColorProps,
   IFlexProps,
@@ -20,9 +21,15 @@ interface IContainerProps
   children?: any
 }
 
-const Container: React.FC<IContainerProps> = ({ children, ...props }) => (
-  <SafeArea flex={1} {...props}>
-    {children}
+const Container: React.FC<IContainerProps> = ({
+  children,
+  bgColor,
+  ...props
+}) => (
+  <SafeArea flex={1} bgColor={bgColor || 'background'}>
+    <Box flexDir="column" flex={1} bgColor={bgColor || 'background'} {...props}>
+      {children}
+    </Box>
   </SafeArea>
 )
 

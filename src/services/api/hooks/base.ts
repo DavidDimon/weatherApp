@@ -17,19 +17,19 @@ interface IReducerAction {
 }
 
 interface IFetchParams {
-  url: string
-  method: 'post' | 'get' | 'delete' | 'put'
-  body: any
+  url?: string
+  method?: 'post' | 'get' | 'delete' | 'put'
+  body?: any
   dispatch: Function
-  onCompleted: Function
-  onError: Function
+  onCompleted?: Function
+  onError?: Function
 }
 
 interface IHandleFetch {
-  method: 'post' | 'get' | 'delete' | 'put'
-  body: any
-  onCompleted: Function
-  onError: Function
+  method?: 'post' | 'get' | 'delete' | 'put'
+  body?: any
+  onCompleted?: Function
+  onError?: Function
 }
 
 const onFetch = async ({
@@ -43,9 +43,7 @@ const onFetch = async ({
   new Promise(async (resolve, reject) => {
     dispatch({ type: 'change_loading', loading: true })
     try {
-      const parsedUrl = `${url}${
-        url?.includes('?') ? `&appid=${API_TOKEN}` : `?appid=${API_TOKEN}`
-      }`
+      const parsedUrl = `?appid=${API_TOKEN}${url}`
       console.log(
         'url ->',
         `${parsedUrl} [${method || 'get'}]`,
@@ -65,7 +63,7 @@ const onFetch = async ({
   })
 
 const handleFetch =
-  (dispatch: Function, url: string, props: IHandleFetch) =>
+  (dispatch: Function, url: string, props?: IHandleFetch) =>
   (newProps = {}) =>
     new Promise(async (resolve, reject) => {
       try {
@@ -96,7 +94,7 @@ const reducer = (state = initialState, action: IReducerAction) => {
  * @param props { method, body }
  *
  */
-export const useLazyFetch = (url: string, props: IHandleFetch) => {
+export const useLazyFetch = (url: string, props?: IHandleFetch) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   return [
@@ -114,7 +112,7 @@ export const useLazyFetch = (url: string, props: IHandleFetch) => {
  * @param props { method, body}
  *
  */
-export const useFetch = (url: string, props: IHandleFetch) => {
+export const useFetch = (url: string, props?: IHandleFetch) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {

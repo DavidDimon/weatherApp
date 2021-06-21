@@ -13,7 +13,9 @@ const LottieWrapper = ({ name, ...props }) => (
     alignItems="center"
     {...omit(lottieProps, props)}
   >
-    <LottieView source={LottieFiles[name]} {...pick(lottieProps, props)} />
+    {LottieFiles[name] ? (
+      <LottieView source={LottieFiles[name]} {...pick(lottieProps, props)} />
+    ) : null}
   </Box>
 )
 
