@@ -116,11 +116,13 @@ export const flexProps = ({
 export interface IFontProps {
   underline?: boolean
   align?: string
+  weight?: string | number
 }
 
-export const fontProps = ({ underline, align }: IFontProps) => `
+export const fontProps = ({ underline, align, weight }: IFontProps) => `
   ${underline ? `text-decoration-line: underline;` : ''}
   ${align ? `text-align: ${align};` : ''}
+  ${weight ? `font-weight: ${weight};` : ''}
 `
 
 export interface IBorderProps {

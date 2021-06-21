@@ -1,5 +1,8 @@
 import React from 'react'
 import * as Ramda from 'ramda'
+// @ts-ignore
+import { API_TOKEN } from 'react-native-dotenv'
+
 import api from '@services/api/config'
 
 const initialState = {
@@ -16,7 +19,7 @@ interface IReducerAction {
 interface IFetchParams {
   url: string
   method: 'post' | 'get' | 'delete' | 'put'
-  params: any
+  body: any
   dispatch: Function
   onCompleted: Function
   onError: Function
@@ -24,7 +27,7 @@ interface IFetchParams {
 
 interface IHandleFetch {
   method: 'post' | 'get' | 'delete' | 'put'
-  params: any
+  body: any
   onCompleted: Function
   onError: Function
 }
@@ -32,7 +35,7 @@ interface IHandleFetch {
 const onFetch = async ({
   url,
   method,
-  params,
+  body,
   dispatch,
   onCompleted,
   onError,
@@ -40,8 +43,16 @@ const onFetch = async ({
   new Promise(async (resolve, reject) => {
     dispatch({ type: 'change_loading', loading: true })
     try {
-      console.log('url ->', `${url} [${method || 'get'}]`, 'params ->', params)
-      const { data } = await api[method || 'get'](url, params || {})
+      const parsedUrl = `${url}${
+        url?.includes('?') ? `&appid=${API_TOKEN}` : `?appid=${API_TOKEN}`
+      }`
+      console.log(
+        'url ->',
+        `${parsedUrl} [${method || 'get'}]`,
+        'body ->',
+        body
+      )
+      const { data } = await api[method || 'get'](parsedUrl, body || {})
       dispatch({ type: 'add_data', data })
       !!onCompleted && onCompleted(data)
       resolve(data)
@@ -82,7 +93,7 @@ const reducer = (state = initialState, action: IReducerAction) => {
 /**
  *
  * @param url
- * @param props { method, params }
+ * @param props { method, body }
  *
  */
 export const useLazyFetch = (url: string, props: IHandleFetch) => {
@@ -100,7 +111,7 @@ export const useLazyFetch = (url: string, props: IHandleFetch) => {
 /**
  *
  * @param url
- * @param props { method, params}
+ * @param props { method, body}
  *
  */
 export const useFetch = (url: string, props: IHandleFetch) => {
@@ -108,7 +119,7 @@ export const useFetch = (url: string, props: IHandleFetch) => {
 
   React.useEffect(() => {
     if (url) handleFetch(dispatch, url, props)()
-  }, [props?.params])
+  }, [props?.body])
 
   return {
     refetch: handleFetch(dispatch, url, props),

@@ -8,7 +8,7 @@ export const wp = (width: string | number, noCalc?: boolean) => {
 
   const value = typeof width === 'number' ? `${width}%` : width
 
-  return widthPercentageToDP(value)
+  return `${widthPercentageToDP(value)}px`
 }
 
 export const hp = (height: string | number, noCalc?: boolean) => {
@@ -16,5 +16,5 @@ export const hp = (height: string | number, noCalc?: boolean) => {
 
   const value = typeof height === 'number' ? `${height}%` : height
 
-  return heightPercentageToDP(value)
+  return `${heightPercentageToDP(value)}px`
 }

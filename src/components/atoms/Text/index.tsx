@@ -5,6 +5,7 @@ import {
   IMarginProps,
   IPaddingProps,
   ISizeProps,
+  IFontProps,
 } from '@styles/styledSystem'
 import { translate as t } from '@services/locale'
 import { StyledText } from './styles'
@@ -13,7 +14,8 @@ interface ITextProps
   extends IColorProps,
     IMarginProps,
     IPaddingProps,
-    ISizeProps {
+    ISizeProps,
+    IFontProps {
   children?: string | any
   translate?: boolean
 }

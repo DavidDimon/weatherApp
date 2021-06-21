@@ -1,17 +1,19 @@
 import React from 'react'
 import { ActivityIndicator } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import DeviceInfo from 'react-native-device-info'
 
 import { Container } from '@components'
 import { IScreenDefault } from '@interfaces/screen'
+import { useGetLocation } from '@services/api/hooks'
 
 const SplashScreen: React.FC & IScreenDefault = () => {
   const navigation: any = useNavigation()
+  const { loading, statusPermission } = useGetLocation()
 
   const checkLocationPermission = async () => {
-    const enabled = await DeviceInfo.isLocationEnabled()
-    if (enabled) {
+    if (loading) return
+
+    if (statusPermission) {
       navigation.replace('Home')
       return
     }
@@ -20,7 +22,7 @@ const SplashScreen: React.FC & IScreenDefault = () => {
 
   React.useEffect(() => {
     checkLocationPermission()
-  }, [])
+  }, [loading])
 
   return (
     <Container alignItems="center" justifyContent="center">

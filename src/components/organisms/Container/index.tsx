@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Box } from '@components/atoms'
 import {
   IColorProps,
   IFlexProps,
@@ -9,6 +8,7 @@ import {
   ISizeProps,
   IBorderProps,
 } from '@styles/styledSystem'
+import { SafeArea } from './styles'
 
 interface IContainerProps
   extends IColorProps,
@@ -21,9 +21,9 @@ interface IContainerProps
 }
 
 const Container: React.FC<IContainerProps> = ({ children, ...props }) => (
-  <Box flex={1} {...props}>
+  <SafeArea flex={1} {...props}>
     {children}
-  </Box>
+  </SafeArea>
 )
 
 export default Container

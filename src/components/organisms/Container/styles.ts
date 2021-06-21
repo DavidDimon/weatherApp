@@ -3,27 +3,31 @@ import styled from 'styled-components/native'
 import {
   colorProps,
   IColorProps,
+  flexProps,
+  IFlexProps,
   marginProps,
   IMarginProps,
   paddingProps,
   IPaddingProps,
   sizeProps,
   ISizeProps,
-  fontProps,
-  IFontProps,
+  borderProps,
+  IBorderProps,
 } from '@styles/styledSystem'
 
-interface ITextProps
-  extends IFontProps,
-    IColorProps,
+interface IBoxProps
+  extends IColorProps,
+    IFlexProps,
     IMarginProps,
     IPaddingProps,
-    ISizeProps {}
+    ISizeProps,
+    IBorderProps {}
 
-export const StyledText = styled.Text<ITextProps>`
-  ${fontProps}
+export const SafeArea = styled.SafeAreaView<IBoxProps>`
   ${colorProps}
+  ${flexProps}
   ${marginProps}
   ${paddingProps}
   ${sizeProps}
+  ${borderProps}
 `
