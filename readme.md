@@ -26,6 +26,15 @@
 - Constants (constants of app separated by entity or screen)
 - Interface (general interfaces separated by entity)
 
+## Features
+
+- Get weather info by latitude and longitude
+- Dark and light mode
+- Translated for portuguese and english
+- Styled system for react native made by me :D
+
 ## ScreenShots
 
 <img  alt="Home"  src=".github/images/home.png"  width="40%">
+
+<img  alt="Home"  src=".github/images/home-white.png"  width="40%">
